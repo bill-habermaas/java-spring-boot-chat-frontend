@@ -1,0 +1,33 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "webchat";
+package auth;
+
+// Login a user to chat
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+  string message = 2;
+}
+
+// Create a new user
+message CreateRequest {
+  string username = 1;
+  string password1 = 2;
+  string password2 = 3;
+  string emailaddr = 4;
+  string aliasname = 5;
+}
+
+message CreateResponse {
+  string id = 1;
+}
+
+service Auth {
+  rpc login (LoginRequest) returns (LoginResponse);
+  //rpc create (CreateRequest) returns (CreateResponse);
+}
