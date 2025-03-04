@@ -1,0 +1,37 @@
+syntax = "proto3";
+// Note: When importing additional protobuf files in a java build a separate
+// java package must be specified.
+option java_multiple_files = true;
+option java_package = "webchat.login";
+
+// For Rust - force everything into the same package
+package chatc; 
+
+// Protobuf package for
+// - User login or user delete
+// - User creation
+// LoginCommand defines if login user or delete user
+enum LoginCommand {
+  DoLogin = 0;
+  DoDelete = 1;
+}
+
+// LoginCommand request packet
+message LoginCommandRequest {
+  int32 command = 1;
+  string username = 2;
+  string password = 3;
+}
+
+// LoginCommand status codes
+enum LoginStatus {
+  LoginSuccess = 0;
+  LoginUserNotFound = 1;
+  LoginBadPassword = 2;
+  LoginTokenError =3;
+}
+message LoginCommandResponse {
+  LoginStatus status = 1;
+  string token = 2;
+  string error_message = 3;
+}

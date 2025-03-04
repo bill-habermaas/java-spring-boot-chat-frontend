@@ -1,0 +1,34 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "webchat.chatc";
+package chatc;
+
+import "common.proto";
+import "login.proto";
+import "create.proto";
+
+// Message of the day
+message InfoRequest {
+  string token = 1;
+  string filter = 2;
+}
+
+message InfoResponse {
+  Status status = 1;
+  string message = 2;
+}
+
+message CheckTokenRequest {
+  string token = 1;
+}
+
+message CheckTokenResponse {
+  Status status = 1;
+}
+
+service Chatc {
+  rpc getinfo (InfoRequest) returns (InfoResponse);
+  rpc login (LoginCommandRequest) returns (LoginCommandResponse);
+  rpc create (CreateRequest) returns (CreateResponse);
+}
+

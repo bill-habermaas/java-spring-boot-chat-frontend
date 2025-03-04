@@ -1,0 +1,30 @@
+syntax = "proto3";
+// Note: When importing additional protobuf files in a java build a separate
+// java package must be specified.
+option java_multiple_files = true;
+option java_package = "webchat.create";
+
+// For Rust - force everything into the same package
+package chatc;
+
+// Create user packet
+message CreateRequest {
+  string username = 1;
+  string password1 = 2;
+  string password2 = 3;
+  string aliasname = 4;
+  string phonenumber = 5;
+  string emailaddress = 6;
+  string role = 7;
+}
+
+// Status codes for create user
+enum CreateStatus {
+  CreateSuccess = 0;
+  CreateUserExists = 1;
+  CreatePasswordDiffer = 2;
+}
+message CreateResponse {
+  CreateStatus status = 1;
+  string error_message = 2;
+}
