@@ -17,6 +17,7 @@
 
 package com.habermaas.webchat.controllers;
 
+//import com.habermaas.webchat.configuration.GrpcConfiguration;
 import com.habermaas.webchat.configuration.GrpcConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,7 @@ import webchat.chatc.InfoResponse;
 
 public class MotdController {
 
-    final
-    GrpcConfiguration grpcConfig;
+    final GrpcConfiguration grpcConfig;
 
     public MotdController(GrpcConfiguration grpcConfig) {
         this.grpcConfig = grpcConfig;
@@ -38,7 +38,7 @@ public class MotdController {
     public ResponseEntity<String> getmotd(
             @RequestParam("token") String token,
             @RequestParam("filter") String filter) {
-        InfoResponse resp = grpcConfig.getstub().getinfo(
+        InfoResponse resp = grpcConfig.getStub().getinfo(
                 InfoRequest.newBuilder()
                         .setToken(token)
                         .setFilter(filter)

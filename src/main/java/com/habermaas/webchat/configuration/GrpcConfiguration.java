@@ -14,30 +14,26 @@
  * limitations under the License.
  *
  */
-
 package com.habermaas.webchat.configuration;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import lombok.Getter;
 import org.springframework.context.annotation.Configuration;
 import webchat.chatc.ChatcGrpc;
 
+@Getter
 @Configuration
 public class GrpcConfiguration {
 
     ChatcGrpc.ChatcBlockingStub stub;
 
     GrpcConfiguration() {
-
         ManagedChannel channel = ManagedChannelBuilder.forAddress(
-                        "localhost", 50051)
+                "localhost", 500051)
                 .usePlaintext()
                 .build();
 
         stub = ChatcGrpc.newBlockingStub(channel);
-    }
-
-    public ChatcGrpc.ChatcBlockingStub getstub() {
-        return stub;
     }
 }

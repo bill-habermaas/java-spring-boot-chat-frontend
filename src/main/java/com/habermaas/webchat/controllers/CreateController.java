@@ -17,8 +17,8 @@
 
 package com.habermaas.webchat.controllers;
 
+//import com.habermaas.webchat.configuration.GrpcConfiguration;
 import com.habermaas.webchat.configuration.GrpcConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -46,7 +46,7 @@ public class CreateController {
             @RequestParam("phonenumber") String phonenumber,
             @RequestParam("emailaddress") String emailaddress)
     {
-        CreateResponse resp = grpcConfig.getstub().create(CreateRequest.newBuilder()
+        CreateResponse resp = grpcConfig.getStub().create(CreateRequest.newBuilder()
                 .setUsername(username)
                 .setPassword1(password1)
                 .setPassword2(password2)

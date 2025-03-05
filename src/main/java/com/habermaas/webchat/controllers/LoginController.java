@@ -17,6 +17,7 @@
 
 package com.habermaas.webchat.controllers;
 
+//import com.habermaas.webchat.configuration.GrpcConfiguration;
 import com.habermaas.webchat.configuration.GrpcConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,7 @@ import webchat.login.LoginCommandResponse;
 
 public class LoginController {
 
-    final
-    GrpcConfiguration grpcConfig;
+    final GrpcConfiguration grpcConfig;
 
     public LoginController(GrpcConfiguration grpcConfig) {
         this.grpcConfig = grpcConfig;
@@ -39,7 +39,7 @@ public class LoginController {
             @RequestParam("username") String username,
             @RequestParam("password") String password) {
 
-        LoginCommandResponse resp = grpcConfig.getstub().login(
+        LoginCommandResponse resp = grpcConfig.getStub().login(
                 LoginCommandRequest.newBuilder()
                         .setCommand(0)
                         .setUsername(username)
