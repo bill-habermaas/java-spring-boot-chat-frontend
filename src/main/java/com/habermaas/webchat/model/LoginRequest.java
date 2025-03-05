@@ -1,4 +1,4 @@
-package com.habermaas.webchat;
+package com.habermaas.webchat.model;
 
 @lombok.Getter
 @lombok.Setter

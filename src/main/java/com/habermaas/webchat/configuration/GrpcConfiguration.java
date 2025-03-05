@@ -15,15 +15,29 @@
  *
  */
 
-package com.habermaas.webchat;
+package com.habermaas.webchat.configuration;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import org.springframework.context.annotation.Configuration;
+import webchat.chatc.ChatcGrpc;
 
-@SpringBootApplication
-public class WebchatApplication {
+@Configuration
+public class GrpcConfiguration {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WebchatApplication.class, args);
-	}
+    ChatcGrpc.ChatcBlockingStub stub;
+
+    GrpcConfiguration() {
+
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(
+                        "localhost", 50051)
+                .usePlaintext()
+                .build();
+
+        stub = ChatcGrpc.newBlockingStub(channel);
+    }
+
+    public ChatcGrpc.ChatcBlockingStub getstub() {
+        return stub;
+    }
 }
