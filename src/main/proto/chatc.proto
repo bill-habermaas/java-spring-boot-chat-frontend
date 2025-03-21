@@ -7,6 +7,11 @@ import "common.proto";
 import "login.proto";
 import "create.proto";
 
+message DbinitRequest {
+  string dbspec = 1;
+  string database = 2;
+}
+
 // Message of the day
 message InfoRequest {
   string token = 1;
@@ -14,7 +19,7 @@ message InfoRequest {
 }
 
 message InfoResponse {
-  Status status = 1;
+  StatusResponse status = 1;
   string message = 2;
 }
 
@@ -23,11 +28,12 @@ message CheckTokenRequest {
 }
 
 message CheckTokenResponse {
-  Status status = 1;
+  StatusResponse status = 1;
 }
 
 service Chatc {
   rpc getinfo (InfoRequest) returns (InfoResponse);
+  rpc dbinit(DbinitRequest) returns(StatusResponse);
   rpc login (LoginCommandRequest) returns (LoginCommandResponse);
   rpc create (CreateRequest) returns (CreateResponse);
 }

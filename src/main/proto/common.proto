@@ -4,7 +4,7 @@ option java_package = "webchat.common";
 package chatc;
 
 // Common response header
-message Status {
+message StatusResponse {
   bool success= 1;
   string error_message = 2;
 }

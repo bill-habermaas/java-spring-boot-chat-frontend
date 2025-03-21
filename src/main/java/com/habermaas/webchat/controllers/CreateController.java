@@ -17,7 +17,6 @@
 
 package com.habermaas.webchat.controllers;
 
-//import com.habermaas.webchat.configuration.GrpcConfiguration;
 import com.habermaas.webchat.configuration.GrpcConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

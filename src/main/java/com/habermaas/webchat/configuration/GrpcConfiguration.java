@@ -14,26 +14,60 @@
  * limitations under the License.
  *
  */
+
 package com.habermaas.webchat.configuration;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.Getter;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import webchat.chatc.ChatcGrpc;
+import webchat.chatc.DbinitRequest;
+import webchat.common.StatusResponse;
 
 @Getter
-@Configuration
+@Component
 public class GrpcConfiguration {
+
+    private final String host;
+    private final int port;
+    private final String dbspec;
+    private final String dbname;
 
     ChatcGrpc.ChatcBlockingStub stub;
 
-    GrpcConfiguration() {
+    //@Autowired
+    public GrpcConfiguration(@Value("${grpc.host}") String host,
+                             @Value("${grpc.port}") int port,
+                             @Value("${mongo.dbspec}") String dbspec,
+                             @Value("${mongo.database}") String dbname
+                  ) {
+        this.host = host;
+        this.port = port;
+        this.dbspec = dbspec;
+        this.dbname = dbname;
+        /*
         ManagedChannel channel = ManagedChannelBuilder.forAddress(
-                "localhost", 500051)
+                            host, port)
                 .usePlaintext()
                 .build();
 
         stub = ChatcGrpc.newBlockingStub(channel);
+
+        DbinitRequest dbinit = DbinitRequest.newBuilder()
+                .setDbspec(dbspec)
+                .setDatabase(dbname)
+                .build();
+
+        try {
+            StatusResponse resp = stub.dbinit(dbinit);
+            System.out.println(resp);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause().toString());
+            System.exit(900);
+        }
+         */
     }
 }
