@@ -45,6 +45,8 @@ public class CreateController {
             @RequestParam("phonenumber") String phonenumber,
             @RequestParam("emailaddress") String emailaddress)
     {
+        System.out.println(username + "/" + password1);
+        /*
         CreateResponse resp = grpcConfig.getStub().create(CreateRequest.newBuilder()
                 .setUsername(username)
                 .setPassword1(password1)
@@ -60,6 +62,8 @@ public class CreateController {
             case CreateUserExists -> message = "user already exists;";
             case CreatePasswordDiffer -> message = "passwords do not match";
         }
-        return new ResponseEntity<>(message, HttpStatus.OK);
+
+     */
+        return new ResponseEntity<>("Duplicate userid", HttpStatus.CONFLICT);
     }
 }

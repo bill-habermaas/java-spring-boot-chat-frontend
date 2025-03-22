@@ -20,11 +20,13 @@ package com.habermaas.webchat.controllers;
 import com.habermaas.webchat.configuration.GrpcConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import webchat.login.LoginCommandRequest;
 import webchat.login.LoginCommandResponse;
 
+@Controller
 public class LoginController {
 
     final GrpcConfiguration grpcConfig;
@@ -36,8 +38,10 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<String> login(
             @RequestParam("username") String username,
-            @RequestParam("password") String password) {
-
+            @RequestParam("password") String password
+            ){
+        System.out.println(username + "/"+ password);
+        /*
         LoginCommandResponse resp = grpcConfig.getStub().login(
                 LoginCommandRequest.newBuilder()
                         .setCommand(0)
@@ -45,6 +49,8 @@ public class LoginController {
                         .setPassword(password)
                         .build());
 
-        return new ResponseEntity<>("xxxx", HttpStatus.BAD_REQUEST);
+        String message = resp.getErrorMessage();
+        */
+        return new ResponseEntity<>("User was not found", HttpStatus.NOT_FOUND);
     }
 }

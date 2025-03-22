@@ -39,17 +39,39 @@
         function validateForm() {
             let name = document.getElementById("username").value;
             let pass = document.getElementById("password").value;
-
             if (name == "") {
                 alert("Login username must be entered.");
                 return false;
             }
-
             if (pass == "") {
                 alert("Login password must be entered.");
                 return false;
             }
             return true;
+        }
+
+        function sendform() {
+            // Creating XMLHttpRequest object
+            var qhttp = new XMLHttpRequest();
+            // Creating call back function
+            qhttp.onreadystatechange = function() {
+                if (this.readyState == 4 ) {
+                    alert(this.responseText);
+                    //document.getElementById("sample").innerHTML = this.responseText;
+                    //console.log("Data Send Successfully")
+                }
+            };
+            // Open the given file
+            qhttp.open("POST", "https://localhost:8443/index.html", true);
+            // Setting HTTP request header
+            qhttp.setRequestHeader('Content-type', 'application/json')
+            // Sending the JSON document to the server
+            qhttp.send(JSON.stringify({
+                "username": username,
+                "password": password,
+            }));
+
+            return false;
         }
     </script>
 

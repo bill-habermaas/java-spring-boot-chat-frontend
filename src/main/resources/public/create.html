@@ -8,7 +8,7 @@
     <div class="main">
         <h1>Secure Chat System</h1>
         <h3>Create your login credentials</h3>
-        <form action="/create" method="post" id="fid" onsubmit="validateForm()">
+        <form action="/create" method="POST" id="fid" onsubmit="validateForm()">
             <label for="username">
                 Username:
             </label>
@@ -91,7 +91,6 @@
                 alert("Invalid email format");
                 return false;
             }
-
             return true;
         }
     </script>
